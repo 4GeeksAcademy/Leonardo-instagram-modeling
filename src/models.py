@@ -16,8 +16,6 @@ class Person(Base):
 
 class Address(Base):
     __tablename__ = 'address'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     street_name = Column(String(250))
     street_number = Column(String(250))
