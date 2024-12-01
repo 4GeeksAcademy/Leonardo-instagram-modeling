@@ -25,6 +25,7 @@ class Publicacion(Base):
     foto = Column(String(200), nullable=True)
     tipo = Column(String(15), nullable=False)
     fecha = Column(String(15), nullable=False)
+    id_usuario = Column(Integer, ForeignKey('usuario.id'), nullable=True)
 
 class Mensajes(Base):
     __tablename__ = 'mensajes'
@@ -33,17 +34,20 @@ class Mensajes(Base):
     tipo = Column(String(15), nullable=False)
     fecha = Column(String(15), nullable=False)
     id_emisor = Column(String(200), nullable=False)
+    id_usuario = Column(Integer, ForeignKey('usuario.id'), nullable=True)
 
 class Comentarios(Base):
     __tablename__ = 'comentarios'
     id = Column(Integer, primary_key=True)
     texto = Column(String(200), nullable=False)
     fecha = Column(String(15), nullable=False)
+    id_publicacion = Column(Integer, ForeignKey('publicacion.id'), nullable=True)
 
 class Me_Gusta(Base):
     __tablename__ = 'me_gusta'
     id = Column(Integer, primary_key=True)
     fecha = Column(String(15), nullable=False)
+    id_publicacion = Column(Integer, ForeignKey('publicacion.id'), nullable=True)
 
 class Seguidores(Base):
     __tablename__ = 'seguidores'
@@ -51,6 +55,7 @@ class Seguidores(Base):
     nombre = Column(String(200), nullable=False)
     apellido = Column(String(20), nullable=False)
     foto_perfil = Column(String(200), nullable=True)
+    id_usuario = Column(Integer, ForeignKey('usuario.id'), nullable=True)
 
 class Siguiendo(Base):
     __tablename__ = 'siguiendo'
@@ -58,14 +63,17 @@ class Siguiendo(Base):
     nombre = Column(String(200), nullable=False)
     apellido = Column(String(20), nullable=False)
     foto_perfil = Column(String(200), nullable=True)
+    id_usuario = Column(Integer, ForeignKey('usuario.id'), nullable=True)
 
 class Bloqueados(Base):
     __tablename__ = 'bloqueados'
     id = Column(Integer, primary_key=True)
+    id_usuario = Column(Integer, ForeignKey('usuario.id'), nullable=True)
 
 class Solicitud_Seguimiento(Base):
     __tablename__ = 'solicitud_seguimiento'
     id = Column(Integer, primary_key=True)
+    id_usuario = Column(Integer, ForeignKey('usuario.id'), nullable=True)
     
 
     def to_dict(self):
